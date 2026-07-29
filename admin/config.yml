@@ -1,0 +1,85 @@
+# STEP 1: replace the repo value below with your GitHub username and repository.
+backend:
+  name: github
+  repo: YOUR-GITHUB-USERNAME/YOUR-REPOSITORY
+  branch: main
+  # STEP 2: add base_url after an OAuth proxy is configured.
+  # base_url: https://YOUR-OAUTH-PROXY.example.com
+  # auth_endpoint: auth
+
+local_backend: true
+media_folder: "assets/images/uploads"
+public_folder: "assets/images/uploads"
+
+collections:
+  - name: "site"
+    label: "Business Information"
+    files:
+      - label: "Business Details"
+        name: "business"
+        file: "content/site.json"
+        format: "json"
+        fields:
+          - {label: "Business name", name: "name", widget: "string"}
+          - {label: "Short logo name", name: "shortName", widget: "string"}
+          - {label: "Displayed phone", name: "phoneDisplay", widget: "string"}
+          - {label: "Phone link", name: "phoneLink", widget: "string", hint: "Example: +18015550148"}
+          - {label: "Email", name: "email", widget: "string"}
+          - {label: "City / service area", name: "city", widget: "string"}
+          - {label: "Hours", name: "hours", widget: "string"}
+          - {label: "Tagline", name: "tagline", widget: "text"}
+          - {label: "Homepage headline", name: "heroTitle", widget: "string"}
+          - {label: "Homepage introduction", name: "heroText", widget: "text"}
+      - label: "Repair Services"
+        name: "services"
+        file: "content/services.json"
+        format: "json"
+        fields:
+          - {label: "Repair introduction", name: "intro", widget: "text"}
+          - label: "Services"
+            name: "services"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - {label: "Service name", name: "name", widget: "string"}
+              - {label: "Description", name: "description", widget: "text"}
+              - {label: "Short label", name: "icon", widget: "string"}
+  - name: "inventory"
+    label: "Vehicle Inventory"
+    files:
+      - label: "All Vehicles"
+        name: "vehicles"
+        file: "content/inventory.json"
+        format: "json"
+        fields:
+          - label: "Vehicles"
+            name: "vehicles"
+            widget: "list"
+            summary: "{{fields.year}} {{fields.make}} {{fields.model}} — {{fields.status}}"
+            fields:
+              - {label: "ID / URL slug", name: "id", widget: "string", hint: "Lowercase, no spaces. Example: 2023-tesla-model-3"}
+              - {label: "Year", name: "year", widget: "number", value_type: "int"}
+              - {label: "Make", name: "make", widget: "string"}
+              - {label: "Model", name: "model", widget: "string"}
+              - {label: "Trim", name: "trim", widget: "string", required: false}
+              - {label: "Price", name: "price", widget: "number", value_type: "int", required: false, default: 0}
+              - {label: "Mileage", name: "mileage", widget: "number", value_type: "int", required: false, default: 0}
+              - {label: "Title status", name: "title", widget: "string"}
+              - {label: "Drivetrain", name: "drivetrain", widget: "string", required: false}
+              - {label: "Transmission", name: "transmission", widget: "string", required: false}
+              - {label: "Exterior", name: "exterior", widget: "string", required: false}
+              - {label: "Interior", name: "interior", widget: "string", required: false}
+              - {label: "Stock number", name: "stock", widget: "string"}
+              - {label: "VIN", name: "vin", widget: "string"}
+              - {label: "Status", name: "status", widget: "select", options: ["Available", "Coming Soon", "Sale Pending", "Sold"]}
+              - {label: "Show on homepage", name: "featured", widget: "boolean", default: false}
+              - {label: "Main photo", name: "image", widget: "image"}
+              - label: "Photo gallery"
+                name: "gallery"
+                widget: "list"
+                field: {label: "Photo", name: "photo", widget: "image"}
+              - {label: "Description", name: "description", widget: "text"}
+              - label: "Features"
+                name: "features"
+                widget: "list"
+                field: {label: "Feature", name: "feature", widget: "string"}
