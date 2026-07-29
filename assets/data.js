@@ -1,7 +1,7 @@
 window.DEALERSHIP = {
-  name: "Alvarado Automotive",
-  phoneDisplay: "(801) 555-0148",
-  phoneLink: "+18015550148",
+  name: "Pro-Code Solutions",
+  phoneDisplay: "(385) 477-8598",
+  phoneLink: "+13854778598",
   email: "sales@example.com",
   city: "Utah County, Utah",
   hours: "By appointment",
