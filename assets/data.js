@@ -1,7 +1,7 @@
 window.DEALERSHIP = {
-  name: "Pro-Code Solutions",
-  phoneDisplay: "(385) 477-8598",
-  phoneLink: "+13854778598",
+  name: "Wasatch Auto Gallery",
+  phoneDisplay: "(801) 555-0148",
+  phoneLink: "+18015550148",
   email: "sales@example.com",
   city: "Utah County, Utah",
   hours: "By appointment",
@@ -114,5 +114,3 @@ window.VEHICLES = [
     features: ["All-electric", "Glass roof", "Navigation", "Heated seats", "Mobile app connectivity"]
   }
 ];
-
-window.REPAIR_SERVICES = window.REPAIR_SERVICES || [];

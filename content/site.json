@@ -1,12 +1,14 @@
 {
-  "name": "ProCode Solutions",
-  "shortName": "PCS",
-  "phoneDisplay": "(385) 477-8598",
+  "name": "Pro-Code Solutions",
+  "shortName": "PRO-CODE",
+  "phoneDisplay": "385-477-8598",
   "phoneLink": "+13854778598",
-  "email": "alvandy98@gmail.com",
+  "email": "",
   "city": "Utah County, Utah",
   "hours": "By appointment",
-  "tagline": "Tesla diagnostics, independent repair, and carefully restored vehicles.",
-  "heroTitle": "Tesla expertise. From diagnostics to your next drive.",
-  "heroText": "Independent Tesla diagnostics and repair paired with a focused inventory of professionally prepared vehicles—delivered with transparent information and direct communication."
+  "tagline": "Independent Tesla diagnostics, select repairs, and carefully prepared vehicles.",
+  "heroTitle": "Tesla diagnostics, repair, and vehicle sales under one roof.",
+  "heroText": "Affordable Tesla diagnostics and select repairs, plus a focused inventory of professionally prepared vehicles. Independent service, honest recommendations, and direct communication.",
+  "diagnosticPrice": 99,
+  "heroImage": ""
 }

@@ -107,3 +107,15 @@ The site states that the company is independent and is not affiliated with, auth
 - `admin/index.html` — CMS editor interface
 - `admin/config.yml` — CMS fields and GitHub backend configuration
 - `assets/script.js` — working inventory, gallery, business-content, service, menu, and calculator logic
+
+## Operations fields and privacy
+
+The CMS now includes preparation status, parts, next action, readiness, and optional financial fields. These fields are not rendered on public webpages, but a public GitHub repository can still expose the underlying JSON file. Do not enter confidential purchase or profit figures until those records are moved to a private system.
+
+## Admin activation
+
+1. Confirm `admin/config.yml` contains `repo: alvandy98/Tesla-Service`.
+2. Deploy a GitHub OAuth proxy and add its `base_url` to `admin/config.yml`.
+3. Open `https://alvandy98.github.io/Tesla-Service/admin/`.
+4. Log in with a GitHub account that has write permission to the repository.
+5. Test by changing one non-sensitive field and confirming a new commit appears.
