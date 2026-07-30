@@ -27,4 +27,4 @@ Use **ProCode Solutions** in customer-facing copy. The Cloudflare project slug m
 
 ## Before accepting leads
 
-Replace `YOUR_FORM_ID` in the contact and trade-in forms with a working form endpoint.
+Replace `YOUR_FORM_ID` in the contact form with a working form endpoint.
