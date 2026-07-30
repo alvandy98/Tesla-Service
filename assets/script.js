@@ -1,76 +1,19 @@
-(() => {
-  'use strict';
-  const FALLBACK = 'assets/images/vehicle-placeholder.svg';
-  const money = value => value ? new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(value) : 'Contact for price';
-  const number = value => value ? new Intl.NumberFormat('en-US').format(value) : 'Contact for mileage';
-  const esc = value => String(value ?? '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
-  const fetchJSON = async path => { const r=await fetch(path,{cache:'no-store'}); if(!r.ok) throw new Error(`${path}: ${r.status}`); return r.json(); };
-  const normalize = item => item.publicListing || item;
-
-  async function init(){
-    const [site, servicesData, inventoryData] = await Promise.all([
-      fetchJSON('content/site.json'), fetchJSON('content/services.json'), fetchJSON('content/inventory.json')
-    ]);
-    const vehicles=(inventoryData.vehicles||[]).map(normalize);
-    bindSite(site);
-    nav();
-    renderFeatured(vehicles);
-    renderInventory(vehicles);
-    renderVehicle(vehicles);
-    renderServices(servicesData,site);
-    calculator();
-    prefill();
-  }
-
-  function bindSite(s){
-    document.querySelectorAll('[data-business-name]').forEach(e=>e.textContent=s.name);
-    document.querySelectorAll('[data-phone-display]').forEach(e=>e.textContent=s.phoneDisplay);
-    document.querySelectorAll('[data-phone-link]').forEach(e=>e.href=`tel:${s.phoneLink}`);
-    document.querySelectorAll('[data-email]').forEach(e=>e.textContent=s.email || 'Call or text us');
-    document.querySelectorAll('[data-email-link]').forEach(e=>{e.href=s.email?`mailto:${s.email}`:`tel:${s.phoneLink}`});
-    document.querySelectorAll('[data-city]').forEach(e=>e.textContent=s.city);
-    document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());
-    const heroTitle=document.querySelector('[data-hero-title]'); if(heroTitle) heroTitle.textContent=s.heroTitle;
-    const heroText=document.querySelector('[data-hero-text]'); if(heroText) heroText.textContent=s.heroText;
-  }
-
-  function nav(){
-    const btn=document.querySelector('.menu-button'), links=document.querySelector('.nav-links');
-    if(btn&&links) btn.addEventListener('click',()=>{const open=links.classList.toggle('open');btn.setAttribute('aria-expanded',String(open));});
-  }
-
-  function card(v){
-    if(v.status==='Not Listed') return '';
-    return `<article class="vehicle-card"><a class="vehicle-image" href="vehicle.html?id=${encodeURIComponent(v.id)}"><img src="${esc(v.image||FALLBACK)}" alt="${esc(`${v.year} ${v.make} ${v.model}`)}" onerror="this.src='${FALLBACK}'"><span class="status-badge">${esc(v.status)}</span></a><div class="vehicle-card-body"><p class="eyebrow">${esc(v.stock||'Available')}</p><h3><a href="vehicle.html?id=${encodeURIComponent(v.id)}">${esc(`${v.year} ${v.make} ${v.model}`)}</a></h3><p>${esc(v.trim||v.title||'')}</p><div class="vehicle-card-meta"><strong>${money(v.price)}</strong><span>${number(v.mileage)}${v.mileage?' miles':''}</span></div><a class="text-link" href="vehicle.html?id=${encodeURIComponent(v.id)}">View vehicle →</a></div></article>`;
-  }
-  function renderFeatured(vs){const el=document.querySelector('#featured-inventory');if(el) el.innerHTML=vs.filter(v=>v.featured&&v.status!=='Sold'&&v.status!=='Not Listed').slice(0,3).map(card).join('')||'<p>No featured vehicles yet.</p>';}
-  function renderInventory(vs){
-    const el=document.querySelector('#inventory-grid'); if(!el)return;
-    const visible=vs.filter(v=>v.status!=='Not Listed');
-    el.innerHTML=visible.map(card).join('');
-    const search=document.querySelector('#inventory-search');
-    const status=document.querySelector('#status-filter');
-    const apply=()=>{const q=(search?.value||'').toLowerCase(), st=status?.value||'';el.innerHTML=visible.filter(v=>(!q||`${v.year} ${v.make} ${v.model} ${v.trim}`.toLowerCase().includes(q))&&(!st||v.status===st)).map(card).join('')||'<p>No matching vehicles.</p>';};
-    search?.addEventListener('input',apply);status?.addEventListener('change',apply);
-  }
-  function renderVehicle(vs){
-    const el=document.querySelector('#vehicle-detail');if(!el)return;
-    const id=new URLSearchParams(location.search).get('id'),v=vs.find(x=>x.id===id);
-    if(!v){el.innerHTML='<section class="page-hero"><h1>Vehicle not found</h1><p>This listing may have been removed or sold.</p></section>';return;}
-    const gallery=(v.gallery?.length?v.gallery:[v.image]).filter(Boolean);
-    document.title=`${v.year} ${v.make} ${v.model} | Pro-Code Solutions`;
-    el.innerHTML=`<section class="vehicle-gallery"><div class="vehicle-main-image"><img id="main-vehicle-image" src="${esc(gallery[0]||FALLBACK)}" alt="${esc(`${v.year} ${v.make} ${v.model}`)}" onerror="this.src='${FALLBACK}'"></div><div class="thumbnail-row">${gallery.map((x,i)=>`<button class="thumbnail ${i===0?'active':''}" data-src="${esc(x)}"><img src="${esc(x)}" alt="Vehicle photo ${i+1}" onerror="this.src='${FALLBACK}'"></button>`).join('')}</div></section><section class="vehicle-summary"><div><p class="eyebrow">${esc(v.status)} · Stock ${esc(v.stock)}</p><h1>${esc(`${v.year} ${v.make} ${v.model}`)}</h1><p class="lead">${esc(v.trim||'')}</p></div><div class="vehicle-price">${money(v.price)}</div></section><section class="vehicle-content-grid"><div><h2>Vehicle overview</h2><p>${esc(v.description)}</p>${v.disclosure?`<div class="notice"><strong>Disclosure</strong><br>${esc(v.disclosure)}</div>`:''}<h2>Features</h2><ul class="feature-grid">${(v.features||[]).map(f=>`<li>${esc(f)}</li>`).join('')}</ul></div><aside class="info-card"><h2>Details</h2><dl class="spec-list"><div><dt>Mileage</dt><dd>${number(v.mileage)}${v.mileage?' miles':''}</dd></div><div><dt>Title</dt><dd>${esc(v.title)}</dd></div><div><dt>Drivetrain</dt><dd>${esc(v.drivetrain||'Contact us')}</dd></div><div><dt>Transmission</dt><dd>${esc(v.transmission||'Contact us')}</dd></div><div><dt>Exterior</dt><dd>${esc(v.exterior||'Contact us')}</dd></div><div><dt>Interior</dt><dd>${esc(v.interior||'Contact us')}</dd></div><div><dt>VIN</dt><dd>${esc(v.vin)}</dd></div></dl><a class="button primary" href="contact.html?vehicle=${encodeURIComponent(`${v.year} ${v.make} ${v.model}`)}">Ask about this vehicle</a></aside></section>`;
-    el.querySelectorAll('.thumbnail').forEach(b=>b.addEventListener('click',()=>{el.querySelector('#main-vehicle-image').src=b.dataset.src;el.querySelectorAll('.thumbnail').forEach(x=>x.classList.remove('active'));b.classList.add('active');}));
-  }
-  function renderServices(data,site){
-    const el=document.querySelector('#services-grid');if(!el)return;
-    el.innerHTML=(data.services||[]).filter(s=>s.featured!==false).map(s=>`<article class="service-card"><span class="service-icon">${esc(s.icon)}</span><h3>${esc(s.name)}</h3><p>${esc(s.description)}</p>${s.startingPrice?`<strong>Starting at ${money(s.startingPrice)}</strong>`:''}</article>`).join('');
-    document.querySelectorAll('[data-diagnostic-price]').forEach(e=>e.textContent=money(site.diagnosticPrice));
-  }
-  function calculator(){
-    const form=document.querySelector('#payment-calculator');if(!form)return;
-    form.addEventListener('submit',e=>{e.preventDefault();const price=+form.price.value||0,down=+form.down.value||0,trade=+form.trade.value||0,apr=(+form.apr.value||0)/1200,n=+form.months.value||60,p=Math.max(0,price-down-trade);const payment=apr?p*apr*Math.pow(1+apr,n)/(Math.pow(1+apr,n)-1):p/n;document.querySelector('#payment-result').innerHTML=`Estimated payment: <strong>${money(payment)}/month</strong>`;});
-  }
-  function prefill(){const value=new URLSearchParams(location.search).get('vehicle');const input=document.querySelector('#vehicle-interest');if(value&&input)input.value=value;}
-  init().catch(err=>{console.error(err);document.querySelectorAll('#featured-inventory,#inventory-grid,#services-grid,#vehicle-detail').forEach(el=>{if(el)el.innerHTML='<div class="notice">Website content could not load. Confirm the content folder was uploaded and refresh the page.</div>';});});
-})();
+const state={site:null,services:[],inventory:[]};
+const $=(s,r=document)=>r.querySelector(s);const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const money=n=>Number(n||0).toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
+const mileage=n=>Number(n||0).toLocaleString('en-US');
+const fallback='assets/images/vehicle-placeholder.svg';
+async function loadJSON(path){const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw new Error(path);return r.json()}
+function applySite(){const s=state.site||{};$$('[data-business-name]').forEach(e=>e.textContent=s.businessName||s.name||'Pro-Code Solutions');$$('[data-phone-display]').forEach(e=>e.textContent=s.phoneDisplay||'385-477-8598');$$('[data-phone-link]').forEach(e=>e.href=`tel:${s.phone||s.phoneLink||'3854778598'}`);$$('[data-email]').forEach(e=>e.textContent=s.email||'');$$('[data-email-link]').forEach(e=>e.href=`mailto:${s.email||''}`);$$('[data-city]').forEach(e=>e.textContent=s.city||'Utah County, Utah');$$('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());}
+function image(src){return src||fallback}
+function badge(v){const c=(v.status||'available').toLowerCase().replace(/\s+/g,'-');return `<span class="badge ${c==='available'?'available':'coming'}">${v.status||'Available'}</span>`}
+function card(v){return `<article class="vehicle-card app-card"><a class="vehicle-image" href="vehicle.html?id=${encodeURIComponent(v.id)}">${badge(v)}<img src="${image(v.primaryImage)}" alt="${v.year} ${v.make} ${v.model}" onerror="this.src='${fallback}'"></a><div class="vehicle-card-body"><div class="card-topline"><span>${v.drivetrain||''}</span><span>${v.titleStatus||''}</span></div><h3>${v.year} ${v.make} ${v.model}</h3><p class="vehicle-meta">${v.trim||''} · ${mileage(v.mileage)} miles</p><div class="vehicle-card-footer"><strong>${money(v.price)}</strong><a class="text-link" href="vehicle.html?id=${encodeURIComponent(v.id)}">View details →</a></div></div></article>`}
+function renderInventory(list,target){const el=$(target);if(!el)return;el.innerHTML=list.length?list.map(card).join(''):'<div class="empty-state">No vehicles match your search.</div>'}
+function renderFeatured(){renderInventory(state.inventory.filter(v=>v.featured!==false&&String(v.status).toLowerCase()!=='sold').slice(0,3),'#featured-inventory')}
+function renderAll(){const grid=$('#inventory-grid');if(!grid)return;const search=$('#inventory-search'),status=$('#inventory-status'),count=$('#inventory-count');const go=()=>{const q=(search?.value||'').toLowerCase();const st=(status?.value||'').toLowerCase();const list=state.inventory.filter(v=>{const text=`${v.year} ${v.make} ${v.model} ${v.trim} ${v.drivetrain}`.toLowerCase();return (!q||text.includes(q))&&(!st||String(v.status).toLowerCase()===st)});renderInventory(list,'#inventory-grid');if(count)count.textContent=`${list.length} vehicle${list.length===1?'':'s'}`};search?.addEventListener('input',go);status?.addEventListener('change',go);go()}
+function renderServices(){const el=$('#service-grid');if(!el)return;el.innerHTML=state.services.map((s,i)=>`<article class="service-tile app-card"><span class="service-index">0${i+1}</span><div><h3>${s.name}</h3><p>${s.description}</p></div><span class="service-arrow">↗</span></article>`).join('')}
+function renderVehicle(){const root=$('#vehicle-detail-root');if(!root)return;const id=new URLSearchParams(location.search).get('id');const v=state.inventory.find(x=>String(x.id)===String(id))||state.inventory[0];if(!v){root.innerHTML='<div class="empty-state">Vehicle not found.</div>';return}document.title=`${v.year} ${v.make} ${v.model} | Pro-Code Solutions`;const gallery=[v.primaryImage,...(v.gallery||[])].filter(Boolean);root.innerHTML=`<div class="vehicle-detail-grid"><div><div class="main-photo"><img id="main-vehicle-photo" src="${image(gallery[0])}" alt="${v.year} ${v.make} ${v.model}"></div><div class="thumbnail-row">${gallery.map((g,i)=>`<button class="thumbnail ${i===0?'active':''}" data-image="${g}"><img src="${g}" alt="Vehicle photo"></button>`).join('')}</div></div><aside class="vehicle-summary app-card">${badge(v)}<p class="eyebrow">${v.stockNumber||'Available now'}</p><h1>${v.year} ${v.make} ${v.model}</h1><p class="detail-mileage">${v.trim||''} · ${mileage(v.mileage)} miles</p><p class="detail-price">${money(v.price)}</p><div class="button-row"><a class="button primary" href="contact.html?interest=${encodeURIComponent(v.id)}">Schedule a showing</a><a class="button secondary" href="tel:3854778598">Call or text</a></div></aside></div><section class="detail-section"><h2>Vehicle overview</h2><div class="spec-grid"><div><span>Title</span><strong>${v.titleStatus||'Contact us'}</strong></div><div><span>Drivetrain</span><strong>${v.drivetrain||'—'}</strong></div><div><span>Transmission</span><strong>${v.transmission||'—'}</strong></div><div><span>Exterior</span><strong>${v.exteriorColor||'—'}</strong></div><div><span>Interior</span><strong>${v.interiorColor||'—'}</strong></div><div><span>VIN</span><strong>${v.vin||'Available on request'}</strong></div></div></section><section class="detail-section two-column"><div><h2>Highlights</h2><ul class="check-list">${(v.features||[]).map(x=>`<li>${x}</li>`).join('')}</ul></div><div><h2>About this vehicle</h2><p>${v.description||''}</p>${v.disclosure?`<div class="disclosure-box"><strong>Disclosure</strong><p>${v.disclosure}</p></div>`:''}</div></section>`;$$('.thumbnail').forEach(b=>b.onclick=()=>{$('#main-vehicle-photo').src=b.dataset.image;$$('.thumbnail').forEach(x=>x.classList.remove('active'));b.classList.add('active')})}
+function menu(){const b=$('.menu-button'),n=$('.nav-links');b?.addEventListener('click',()=>{n.classList.toggle('open');b.setAttribute('aria-expanded',n.classList.contains('open'))})}
+function reveals(){const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');obs.unobserve(e.target)}}),{threshold:.12});$$('.reveal').forEach(e=>obs.observe(e))}
+async function init(){try{{const [siteDoc,serviceDoc,inventoryDoc]=await Promise.all([loadJSON('content/site.json'),loadJSON('content/services.json'),loadJSON('content/inventory.json')]);state.site=siteDoc;state.services=serviceDoc.services||serviceDoc||[];state.inventory=(inventoryDoc.vehicles||inventoryDoc||[]).map(v=>({...v,primaryImage:v.primaryImage||v.image,titleStatus:v.titleStatus||v.title,stockNumber:v.stockNumber||v.stock,exteriorColor:v.exteriorColor||v.exterior,interiorColor:v.interiorColor||v.interior}))}}catch(e){console.warn('Content load issue',e);state.site={businessName:'Pro-Code Solutions',phone:'3854778598',phoneDisplay:'385-477-8598',city:'Utah County, Utah'};state.services=[];state.inventory=[]}applySite();menu();renderFeatured();renderAll();renderServices();renderVehicle();reveals()}
+document.addEventListener('DOMContentLoaded',init);

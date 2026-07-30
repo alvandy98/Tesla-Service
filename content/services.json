@@ -1,47 +1,11 @@
 {
   "intro": "We provide independent diagnostic and repair services for Tesla vehicles at a lower cost than many traditional service options. We are not a Tesla-certified or Tesla-authorized repair center and are not affiliated with Tesla, Inc.",
   "services": [
-    {
-      "name": "Advanced diagnostics",
-      "description": "Alert investigation, system scans, electrical troubleshooting, and clear next-step recommendations.",
-      "icon": "SCAN",
-      "startingPrice": 99,
-      "featured": true
-    },
-    {
-      "name": "Cooling and thermal systems",
-      "description": "Coolant leaks, pump concerns, thermal-system faults, bleeding, vacuum filling, and overheating diagnosis.",
-      "icon": "THERM",
-      "startingPrice": 0,
-      "featured": true
-    },
-    {
-      "name": "Low-voltage electrical",
-      "description": "12V/16V battery concerns, charging faults, wiring checks, wake/sleep issues, and parasitic draw diagnosis.",
-      "icon": "LV",
-      "startingPrice": 0,
-      "featured": true
-    },
-    {
-      "name": "Suspension and mechanical",
-      "description": "Control arms, links, hubs, brakes, suspension noise, steering concerns, and common mechanical repairs.",
-      "icon": "MECH",
-      "startingPrice": 0,
-      "featured": true
-    },
-    {
-      "name": "Collision and post-repair checks",
-      "description": "Post-collision diagnostic review, warning-light investigation, sensor checks, and repair-completion inspections.",
-      "icon": "CHECK",
-      "startingPrice": 0,
-      "featured": true
-    },
-    {
-      "name": "Pre-purchase inspections",
-      "description": "Independent review before you buy, with special attention to alerts, repairs, title history, and visible condition.",
-      "icon": "PPI",
-      "startingPrice": 0,
-      "featured": true
-    }
+    {"name":"Advanced diagnostics","description":"Alert investigation, system scans, electrical troubleshooting, and clear next-step recommendations.","icon":"SCAN"},
+    {"name":"Cooling and thermal systems","description":"Coolant leaks, pump concerns, thermal-system faults, bleeding, vacuum filling, and overheating diagnosis.","icon":"THERM"},
+    {"name":"Low-voltage electrical","description":"12V/16V battery concerns, charging faults, wiring checks, wake/sleep issues, and parasitic draw diagnosis.","icon":"LV"},
+    {"name":"Suspension and mechanical","description":"Control arms, links, hubs, brakes, suspension noise, steering concerns, and common mechanical repairs.","icon":"MECH"},
+    {"name":"Collision and post-repair checks","description":"Post-collision diagnostic review, warning-light investigation, sensor checks, and repair-completion inspections.","icon":"CHECK"},
+    {"name":"Pre-purchase inspections","description":"Independent review before you buy, with special attention to alerts, repairs, title history, and visible condition.","icon":"PPI"}
   ]
 }

@@ -1,19 +1,19 @@
+# STEP 1: replace the repo value below with your GitHub username and repository.
 backend:
   name: github
-  repo: alvandy98/Tesla-Service
+  repo: YOUR-GITHUB-USERNAME/YOUR-REPOSITORY
   branch: main
-  # Add these after the OAuth proxy is deployed:
+  # STEP 2: add base_url after an OAuth proxy is configured.
   # base_url: https://YOUR-OAUTH-PROXY.example.com
   # auth_endpoint: auth
 
 local_backend: true
-publish_mode: simple
 media_folder: "assets/images/uploads"
 public_folder: "assets/images/uploads"
 
 collections:
-  - name: "website"
-    label: "Website"
+  - name: "site"
+    label: "Business Information"
     files:
       - label: "Business Details"
         name: "business"
@@ -23,17 +23,14 @@ collections:
           - {label: "Business name", name: "name", widget: "string"}
           - {label: "Short logo name", name: "shortName", widget: "string"}
           - {label: "Displayed phone", name: "phoneDisplay", widget: "string"}
-          - {label: "Phone link", name: "phoneLink", widget: "string", hint: "Example: +13854778598"}
-          - {label: "Email", name: "email", widget: "string", required: false}
+          - {label: "Phone link", name: "phoneLink", widget: "string", hint: "Example: +18015550148"}
+          - {label: "Email", name: "email", widget: "string"}
           - {label: "City / service area", name: "city", widget: "string"}
           - {label: "Hours", name: "hours", widget: "string"}
           - {label: "Tagline", name: "tagline", widget: "text"}
           - {label: "Homepage headline", name: "heroTitle", widget: "string"}
           - {label: "Homepage introduction", name: "heroText", widget: "text"}
-          - {label: "Diagnostic starting price", name: "diagnosticPrice", widget: "number", value_type: "int", default: 99}
-          - {label: "Homepage hero image", name: "heroImage", widget: "image", required: false}
-
-      - label: "Tesla Services"
+      - label: "Repair Services"
         name: "services"
         file: "content/services.json"
         format: "json"
@@ -46,12 +43,9 @@ collections:
             fields:
               - {label: "Service name", name: "name", widget: "string"}
               - {label: "Description", name: "description", widget: "text"}
-              - {label: "Short icon label", name: "icon", widget: "string"}
-              - {label: "Starting price", name: "startingPrice", widget: "number", required: false, value_type: "int"}
-              - {label: "Featured", name: "featured", widget: "boolean", default: true}
-
+              - {label: "Short label", name: "icon", widget: "string"}
   - name: "inventory"
-    label: "Inventory & Vehicle Operations"
+    label: "Vehicle Inventory"
     files:
       - label: "All Vehicles"
         name: "vehicles"
@@ -63,69 +57,29 @@ collections:
             widget: "list"
             summary: "{{fields.year}} {{fields.make}} {{fields.model}} — {{fields.status}}"
             fields:
-              - label: "Public Listing"
-                name: "publicListing"
-                widget: "object"
-                collapsed: false
-                fields:
-                  - {label: "ID / URL slug", name: "id", widget: "string", hint: "Lowercase, no spaces. Example: 2023-tesla-model-3"}
-                  - {label: "Year", name: "year", widget: "number", value_type: "int"}
-                  - {label: "Make", name: "make", widget: "string"}
-                  - {label: "Model", name: "model", widget: "string"}
-                  - {label: "Trim", name: "trim", widget: "string", required: false}
-                  - {label: "Price", name: "price", widget: "number", value_type: "int", required: false, default: 0}
-                  - {label: "Mileage", name: "mileage", widget: "number", value_type: "int", required: false, default: 0}
-                  - {label: "Title status", name: "title", widget: "select", options: ["Clean Title", "Rebuilt Title", "Salvage Title", "Contact for title status"]}
-                  - {label: "Drivetrain", name: "drivetrain", widget: "string", required: false}
-                  - {label: "Transmission", name: "transmission", widget: "string", required: false}
-                  - {label: "Exterior", name: "exterior", widget: "string", required: false}
-                  - {label: "Interior", name: "interior", widget: "string", required: false}
-                  - {label: "Stock number", name: "stock", widget: "string"}
-                  - {label: "VIN", name: "vin", widget: "string"}
-                  - {label: "Public status", name: "status", widget: "select", options: ["Available", "Coming Soon", "Sale Pending", "Sold", "Not Listed"]}
-                  - {label: "Show on homepage", name: "featured", widget: "boolean", default: false}
-                  - {label: "Main photo", name: "image", widget: "image", required: false}
-                  - label: "Photo gallery"
-                    name: "gallery"
-                    widget: "list"
-                    required: false
-                    field: {label: "Photo", name: "photo", widget: "image"}
-                  - {label: "Description", name: "description", widget: "text"}
-                  - label: "Features"
-                    name: "features"
-                    widget: "list"
-                    required: false
-                    field: {label: "Feature", name: "feature", widget: "string"}
-                  - {label: "Disclosure / repair summary", name: "disclosure", widget: "text", required: false}
-
-              - label: "Preparation & Repair Tracking"
-                name: "operations"
-                widget: "object"
-                collapsed: true
-                hint: "Not displayed on the public website, but still visible in a public GitHub repository."
-                fields:
-                  - {label: "Acquisition source", name: "acquisitionSource", widget: "select", required: false, options: ["Copart", "IAA", "Trade-In", "Private Party", "Dealer Auction", "Other"]}
-                  - {label: "Auction / lot number", name: "lotNumber", widget: "string", required: false}
-                  - {label: "Purchase date", name: "purchaseDate", widget: "datetime", required: false, time_format: false, format: "YYYY-MM-DD"}
-                  - {label: "Preparation status", name: "repairStatus", widget: "select", options: ["Purchased", "Awaiting Parts", "In Diagnostics", "In Repair", "Body / Paint", "Detailing", "Final Inspection", "Ready for Photos", "Ready for Sale", "Sold"]}
-                  - {label: "Primary issue", name: "primaryIssue", widget: "text", required: false}
-                  - {label: "Repair notes", name: "repairNotes", widget: "text", required: false}
-                  - {label: "Parts needed", name: "partsNeeded", widget: "list", required: false, field: {label: "Part", name: "part", widget: "string"}}
-                  - {label: "Next action", name: "nextAction", widget: "string", required: false}
-                  - {label: "Target completion date", name: "targetReadyDate", widget: "datetime", required: false, time_format: false, format: "YYYY-MM-DD"}
-                  - {label: "Ready for sale", name: "readyForSale", widget: "boolean", default: false}
-
-              - label: "Owner Financial Tracking"
-                name: "financials"
-                widget: "object"
-                collapsed: true
-                hint: "Do not enter sensitive figures while this repository is public."
-                fields:
-                  - {label: "Purchase cost", name: "purchaseCost", widget: "number", value_type: "float", required: false, default: 0}
-                  - {label: "Parts cost", name: "partsCost", widget: "number", value_type: "float", required: false, default: 0}
-                  - {label: "Outside labor cost", name: "outsideLaborCost", widget: "number", value_type: "float", required: false, default: 0}
-                  - {label: "Transport / auction fees", name: "fees", widget: "number", value_type: "float", required: false, default: 0}
-                  - {label: "Other costs", name: "otherCosts", widget: "number", value_type: "float", required: false, default: 0}
-                  - {label: "Target sale price", name: "targetSalePrice", widget: "number", value_type: "float", required: false, default: 0}
-                  - {label: "Actual sale price", name: "actualSalePrice", widget: "number", value_type: "float", required: false, default: 0}
-                  - {label: "Sold date", name: "soldDate", widget: "datetime", required: false, time_format: false, format: "YYYY-MM-DD"}
+              - {label: "ID / URL slug", name: "id", widget: "string", hint: "Lowercase, no spaces. Example: 2023-tesla-model-3"}
+              - {label: "Year", name: "year", widget: "number", value_type: "int"}
+              - {label: "Make", name: "make", widget: "string"}
+              - {label: "Model", name: "model", widget: "string"}
+              - {label: "Trim", name: "trim", widget: "string", required: false}
+              - {label: "Price", name: "price", widget: "number", value_type: "int", required: false, default: 0}
+              - {label: "Mileage", name: "mileage", widget: "number", value_type: "int", required: false, default: 0}
+              - {label: "Title status", name: "title", widget: "string"}
+              - {label: "Drivetrain", name: "drivetrain", widget: "string", required: false}
+              - {label: "Transmission", name: "transmission", widget: "string", required: false}
+              - {label: "Exterior", name: "exterior", widget: "string", required: false}
+              - {label: "Interior", name: "interior", widget: "string", required: false}
+              - {label: "Stock number", name: "stock", widget: "string"}
+              - {label: "VIN", name: "vin", widget: "string"}
+              - {label: "Status", name: "status", widget: "select", options: ["Available", "Coming Soon", "Sale Pending", "Sold"]}
+              - {label: "Show on homepage", name: "featured", widget: "boolean", default: false}
+              - {label: "Main photo", name: "image", widget: "image"}
+              - label: "Photo gallery"
+                name: "gallery"
+                widget: "list"
+                field: {label: "Photo", name: "photo", widget: "image"}
+              - {label: "Description", name: "description", widget: "text"}
+              - label: "Features"
+                name: "features"
+                widget: "list"
+                field: {label: "Feature", name: "feature", widget: "string"}
