@@ -1,7 +1,7 @@
 # STEP 1: replace the repo value below with your GitHub username and repository.
 backend:
   name: github
-  repo: YOUR-GITHUB-USERNAME/YOUR-REPOSITORY
+  repo: alvandy98/Tesla-Service
   branch: main
   # STEP 2: add base_url after an OAuth proxy is configured.
   # base_url: https://YOUR-OAUTH-PROXY.example.com

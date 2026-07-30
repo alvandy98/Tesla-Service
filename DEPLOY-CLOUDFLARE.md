@@ -3,7 +3,7 @@
 1. Sign in to Cloudflare and open **Workers & Pages**.
 2. Select **Create application** → **Pages** → **Connect to Git**.
 3. Connect GitHub and select `alvandy98/Tesla-Service`.
-4. Project name: `pro-code-solutions`.
+4. Project name: `procode-solutions`.
 5. Production branch: `main`.
 6. Framework preset: `None`.
 7. Build command: leave blank.
