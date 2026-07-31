@@ -3,9 +3,8 @@ backend:
   name: github
   repo: alvandy98/Tesla-Service
   branch: main
-  # STEP 2: add base_url after an OAuth proxy is configured.
-  # base_url: https://YOUR-OAUTH-PROXY.example.com
-  # auth_endpoint: auth
+  base_url: https://procode-cms-auth.alvandy98.workers.dev
+  auth_endpoint: /auth
 
 local_backend: true
 media_folder: "assets/images/uploads"
