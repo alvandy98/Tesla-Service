@@ -1,12 +1,12 @@
 {
-  "name": "ProCode Solutions",
-  "shortName": "PROCODE",
-  "phoneDisplay": "385-477-8598",
+  "heroText": "Affordable Tesla diagnostics, select repairs, and carefully prepared vehicles, without dealership pricing or dealership pressure.",
+  "shortName": "PCS",
   "phoneLink": "+13854778598",
-  "email": "",
   "city": "Utah County, Utah",
-  "hours": "By appointment",
+  "name": "ProCode Solutions",
   "tagline": "Independent Tesla diagnostics, select repair, and curated vehicle sales.",
-  "heroTitle": "Tesla intelligence. Real answers.",
-  "heroText": "Affordable Tesla diagnostics, select repairs, and carefully prepared vehicles\u2014without dealership pricing or dealership pressure."
+  "hours": "By appointment",
+  "phoneDisplay": "385-477-8598",
+  "email": "alvandy98@gmail.com",
+  "heroTitle": "Tesla intelligence. Real answers."
 }
