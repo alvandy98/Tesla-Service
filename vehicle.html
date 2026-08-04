@@ -1,4 +1,156 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Vehicle details from ProCode Solutions."><title>Vehicle Details | ProCode Solutions</title><link rel="stylesheet" href="assets/style.css"><script src="assets/script.js" defer></script></head><body><a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header"><div class="container nav"><a class="brand" href="index.html"><span data-business-name>ProCode Solutions</span><small>TESLA SYSTEMS · VEHICLE SALES</small></a><button class="menu-button" aria-label="Open navigation" aria-expanded="false">☰</button><nav class="nav-links" aria-label="Primary"><a href="index.html">Home</a><a href="service.html">Diagnostics</a><a href="inventory.html">Inventory</a><a href="contact.html">Contact</a><a class="nav-cta" data-phone-link href="#"><span data-phone-display></span></a></nav></div></header>
-<main id="main"><div class="container vehicle-detail" id="vehicle-detail-root"><div class="skeleton"></div></div></main>
-<footer class="site-footer"><div class="container"><div class="footer-grid"><div><h3 data-business-name></h3><p data-city></p><p>Curated vehicles with direct communication and transparent information.</p></div><div><h3>Explore</h3><div class="footer-links"><a href="service.html">Tesla diagnostics</a><a href="inventory.html">Inventory</a><a href="contact.html">Contact</a></div></div><div><h3>Contact</h3><div class="footer-links"><a data-phone-link href="#"><span data-phone-display></span></a><span>Visits by appointment</span></div></div></div><div class="footer-bottom">© <span data-year></span> <span data-business-name></span>. Vehicle availability and information are subject to change.</div></div></footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <meta
+    name="description"
+    content="View vehicle details, inspection information, restoration history, specifications, and available inventory from ProCode Solutions."
+  >
+
+  <title>Vehicle Details | ProCode Solutions</title>
+
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/vehicle.css">
+  <script src="assets/script.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <span data-business-name>ProCode Solutions</span>
+        <small>TESLA DIAGNOSTICS · DEALER SUPPORT · VEHICLE SALES</small>
+      </a>
+
+      <button
+        class="menu-button"
+        aria-label="Open navigation"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="service.html">Diagnostics</a>
+        <a href="dealer-support.html">Dealer Support</a>
+        <a href="inventory.html">Inventory</a>
+        <a href="contact.html">Contact</a>
+
+        <a
+          class="nav-cta"
+          href="tel:3854778598"
+          data-phone-link
+        >
+          <span data-phone-display>385-477-8598</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div id="vehicle-detail-root">
+      <div class="vehicle-loading container">
+        <div class="skeleton"></div>
+      </div>
+    </div>
+  </main>
+
+  <div
+    id="vehicle-lightbox"
+    class="vehicle-lightbox"
+    aria-hidden="true"
+    role="dialog"
+    aria-label="Vehicle photo viewer"
+  >
+    <button
+      class="lightbox-close"
+      type="button"
+      aria-label="Close photo viewer"
+    >
+      ×
+    </button>
+
+    <button
+      class="lightbox-control lightbox-previous"
+      type="button"
+      aria-label="Previous photo"
+    >
+      ‹
+    </button>
+
+    <img
+      id="lightbox-image"
+      src=""
+      alt="Full-size vehicle photo"
+    >
+
+    <button
+      class="lightbox-control lightbox-next"
+      type="button"
+      aria-label="Next photo"
+    >
+      ›
+    </button>
+
+    <span id="lightbox-count" class="lightbox-count"></span>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 data-business-name>ProCode Solutions</h3>
+          <p data-city>Utah County, Utah</p>
+
+          <p data-tagline>
+            Independent Tesla diagnostics, dealer support, select repair, and
+            professionally restored vehicle sales.
+          </p>
+        </div>
+
+        <div>
+          <h3>Explore</h3>
+
+          <div class="footer-links">
+            <a href="service.html">Tesla diagnostics</a>
+            <a href="dealer-support.html">Dealer support</a>
+            <a href="inventory.html">Vehicle inventory</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div>
+          <h3>Contact</h3>
+
+          <div class="footer-links">
+            <a
+              data-phone-link
+              href="tel:3854778598"
+            >
+              <span data-phone-display>385-477-8598</span>
+            </a>
+
+            <span data-hours>By appointment</span>
+            <span data-city>Utah County, Utah</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © <span data-year></span>
+        <span data-business-name>ProCode Solutions</span>.
+        Vehicle availability and information are subject to change.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -18,9 +18,17 @@
       "status": "Available",
       "featured": true,
       "image": "assets/images/uploads/nissan-rogue.jpg",
-      "gallery": ["assets/images/uploads/nissan-rogue.jpg"],
+      "gallery": [
+        "assets/images/uploads/nissan-rogue.jpg"
+      ],
       "description": "A practical compact SUV with comfortable seating, flexible cargo space, and modern driver-assistance features.",
-      "features": ["Backup camera", "Bluetooth", "Keyless entry", "Cruise control", "Flexible cargo area"]
+      "features": [
+        "Backup camera",
+        "Bluetooth",
+        "Keyless entry",
+        "Cruise control",
+        "Flexible cargo area"
+      ]
     },
     {
       "id": "2019-mazda3-hatchback",
@@ -40,31 +48,63 @@
       "status": "Available",
       "featured": true,
       "image": "assets/images/uploads/mazda3.jpg",
-      "gallery": ["assets/images/uploads/mazda3.jpg"],
+      "gallery": [
+        "assets/images/uploads/mazda3.jpg"
+      ],
       "description": "A stylish hatchback with responsive handling, a refined cabin, and useful cargo space.",
-      "features": ["Hatchback cargo space", "Backup camera", "Bluetooth", "Push-button start", "Driver-assistance features"]
+      "features": [
+        "Hatchback cargo space",
+        "Backup camera",
+        "Bluetooth",
+        "Push-button start",
+        "Driver-assistance features"
+      ]
     },
     {
-      "id": "2023-tesla-model-3-a",
+      "id": "2023-tesla-model-3-performance",
       "year": 2023,
       "make": "Tesla",
       "model": "Model 3",
-      "trim": "",
-      "price": 0,
-      "mileage": 0,
-      "title": "Contact for title status",
-      "drivetrain": "Electric",
-      "transmission": "Single-speed",
-      "exterior": "",
-      "interior": "",
-      "stock": "TM3-001",
+      "trim": "Performance",
+      "price": 23795,
+      "mileage": 56451,
+      "title": "Salvage Title",
+      "drivetrain": "Dual Motor All-Wheel Drive",
+      "transmission": "Single-speed automatic",
+      "exterior": "Gray",
+      "interior": "Black Premium Interior",
+      "stock": "TM3P-001",
       "vin": "Available upon request",
       "status": "Available",
       "featured": true,
       "image": "assets/images/uploads/tesla-model-3-a.jpg",
-      "gallery": ["assets/images/uploads/tesla-model-3-a.jpg"],
-      "description": "A modern electric sedan with instant acceleration, advanced technology, and low routine maintenance.",
-      "features": ["All-electric", "Glass roof", "Navigation", "Heated seats", "Mobile app connectivity"]
+      "gallery": [
+        "assets/images/uploads/tesla-model-3-a.jpg"
+      ],
+      "description": "This 2023 Tesla Model 3 Performance combines dual-motor all-wheel drive, rapid acceleration, premium factory Performance equipment, and everyday usability. It is presented in excellent condition with a clean interior and strong, smooth driving performance.",
+      "overview": "Experience Tesla's highest-performance Model 3 with dual-motor all-wheel drive, rapid acceleration, upgraded brakes, factory Performance wheels, and premium technology. This vehicle has been prepared for sale by ProCode Solutions and is available for inspection and a scheduled test drive.",
+      "features": [
+        "Dual Motor All-Wheel Drive",
+        "20-inch Überturbine wheels",
+        "Performance-tuned suspension",
+        "Upgraded Performance brakes",
+        "Carbon-fiber rear spoiler",
+        "Aluminum-alloy pedals",
+        "Premium interior",
+        "Glass roof",
+        "Navigation and touchscreen controls"
+      ],
+      "inspection": [
+        "Vehicle road tested",
+        "Interior condition reviewed",
+        "Exterior condition reviewed"
+      ],
+      "restorationSummary": "This vehicle carries a salvage title and has been repaired and prepared for sale. Detailed information regarding the prior damage, repairs completed, parts used, and available documentation can be reviewed with ProCode Solutions before purchase.",
+      "whyWeChose": "We selected this Model 3 because the Performance trim combines exceptional acceleration, dual-motor traction, premium factory upgrades, and practical everyday usability. Its equipment and overall presentation make it a strong addition to the ProCode Solutions inventory.",
+      "technicianNote": "The same ProCode Solutions team that works with Tesla electrical, computer, charging, cooling, and module concerns also reviews the vehicles prepared for sale.",
+      "disclosure": "This vehicle is listed with a salvage title. Buyers should review the title history, prior damage, completed repairs, and available supporting documentation before purchase.",
+      "range": "315-mile original EPA estimate when new",
+      "wheels": "20-inch Überturbine wheels"
     },
     {
       "id": "2023-tesla-model-3-b",
@@ -84,9 +124,17 @@
       "status": "Coming Soon",
       "featured": false,
       "image": "assets/images/uploads/tesla-model-3-b.jpg",
-      "gallery": ["assets/images/uploads/tesla-model-3-b.jpg"],
+      "gallery": [
+        "assets/images/uploads/tesla-model-3-b.jpg"
+      ],
       "description": "A second 2023 Model 3 currently being prepared for sale.",
-      "features": ["All-electric", "Glass roof", "Navigation", "Heated seats", "Mobile app connectivity"]
+      "features": [
+        "All-electric",
+        "Glass roof",
+        "Navigation",
+        "Heated seats",
+        "Mobile app connectivity"
+      ]
     }
   ]
 }
