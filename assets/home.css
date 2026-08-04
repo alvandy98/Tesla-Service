@@ -1,0 +1,361 @@
+/* ProCode Solutions — Homepage */
+
+.pillar-switch {
+  position: relative;
+  z-index: 4;
+  margin-top: -38px;
+}
+
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.pillar-card {
+  min-height: 360px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-2);
+  transition:
+    transform .3s var(--ease),
+    border-color .3s;
+}
+
+.pillar-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(82, 184, 255, .38);
+}
+
+.diagnose-pillar {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18, 49, 70, .97),
+      rgba(7, 15, 24, .99)
+    );
+}
+
+.partner-pillar {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(38, 38, 60, .96),
+      rgba(9, 13, 22, .99)
+    );
+}
+
+.drive-pillar {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(48, 31, 42, .95),
+      rgba(9, 13, 21, .99)
+    );
+}
+
+.pillar-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.pillar-number,
+.pillar-audience {
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .13em;
+}
+
+.pillar-number {
+  color: var(--brand-2);
+}
+
+.pillar-audience {
+  color: var(--text-3);
+}
+
+.pillar-card h2 {
+  margin: 0 0 16px;
+  font: 700 clamp(1.8rem, 3vw, 2.7rem)/1 Space Grotesk;
+  letter-spacing: -.045em;
+}
+
+.pillar-card p {
+  color: var(--text-2);
+}
+
+.pillar-link {
+  color: var(--brand-2);
+  font-weight: 750;
+}
+
+.owner-help-section {
+  position: relative;
+}
+
+.owner-help-section:before {
+  content: "";
+  position: absolute;
+  inset: 10% 0 auto;
+  height: 650px;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(82, 184, 255, .07),
+      transparent 62%
+    );
+}
+
+.owner-problem-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.owner-problem-card {
+  display: grid;
+  grid-template-columns: 54px 1fr auto;
+  gap: 20px;
+  align-items: center;
+  min-height: 155px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15, 28, 42, .9),
+      rgba(6, 12, 19, .97)
+    );
+  box-shadow: var(--shadow-1);
+  transition:
+    transform .3s var(--ease),
+    border-color .3s;
+}
+
+.owner-problem-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(82, 184, 255, .36);
+}
+
+.problem-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(82, 184, 255, .25);
+  border-radius: 16px;
+  background: rgba(82, 184, 255, .08);
+  color: var(--brand-2);
+  font: 700 1.35rem Space Grotesk;
+}
+
+.problem-category {
+  color: var(--brand-2);
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .13em;
+}
+
+.owner-problem-card h3 {
+  margin: 6px 0;
+  font: 700 1.24rem/1.1 Space Grotesk;
+}
+
+.owner-problem-card p {
+  margin: 0;
+  color: var(--text-3);
+  font-size: .88rem;
+}
+
+.problem-arrow {
+  color: var(--brand-2);
+  font-size: 1.35rem;
+}
+
+.owner-help-action {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+}
+
+.owner-help-action p {
+  color: var(--text-3);
+}
+
+.dealer-preview-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, .012),
+      rgba(92, 83, 255, .035),
+      rgba(255, 255, 255, .012)
+    );
+}
+
+.dealer-preview-section:before {
+  content: "";
+  position: absolute;
+  width: 740px;
+  height: 740px;
+  right: -320px;
+  top: 60px;
+  border: 1px solid rgba(137, 236, 255, .08);
+  border-radius: 50%;
+}
+
+.dealer-preview-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr .9fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.dealer-preview-copy h2 {
+  margin: 0 0 22px;
+  font: 700 clamp(2.7rem, 5.3vw, 5rem)/.95 Space Grotesk;
+  letter-spacing: -.06em;
+}
+
+.dealer-preview-copy > p:not(.eyebrow) {
+  color: var(--text-2);
+  font-size: 1.02rem;
+}
+
+.dealer-benefits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 26px;
+}
+
+.dealer-benefits span {
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .03);
+  color: var(--text-2);
+  font-size: .76rem;
+}
+
+.dealer-console {
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(23, 26, 45, .96),
+      rgba(6, 11, 18, .99)
+    );
+  box-shadow: var(--shadow-2);
+}
+
+.dealer-case-list {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.dealer-case {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, .025);
+}
+
+.dealer-case span,
+.dealer-case strong {
+  display: block;
+}
+
+.dealer-case span {
+  color: var(--brand-2);
+  font-size: .58rem;
+  letter-spacing: .12em;
+}
+
+.dealer-case strong {
+  margin-top: 5px;
+  font-size: .88rem;
+}
+
+.dealer-case small {
+  align-self: center;
+  color: var(--text-3);
+  font-size: .57rem;
+  letter-spacing: .1em;
+  text-align: right;
+}
+
+@media (max-width: 1050px) {
+  .pillar-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pillar-card {
+    min-height: 285px;
+  }
+
+  .dealer-preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dealer-console {
+    max-width: 760px;
+  }
+}
+
+@media (max-width: 800px) {
+  .owner-problem-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .owner-problem-card {
+    grid-template-columns: 46px 1fr;
+    gap: 14px;
+    padding: 20px;
+  }
+
+  .problem-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
+    font-size: 1.1rem;
+  }
+
+  .problem-arrow {
+    display: none;
+  }
+
+  .owner-help-action {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .dealer-case {
+    flex-direction: column;
+  }
+
+  .dealer-case small {
+    align-self: flex-start;
+    text-align: left;
+  }
+}
