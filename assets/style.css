@@ -1816,3 +1816,22 @@ textarea {
     transform: none;
   }
 }
+
+.form-submit-message {
+  margin: 0 0 22px;
+  padding: 15px 17px;
+  border-radius: 13px;
+  font-size: .88rem;
+}
+
+.form-submit-error {
+  border: 1px solid rgba(255,99,115,.28);
+  background: rgba(255,99,115,.08);
+  color: #ffc4cb;
+}
+
+.request-form button[type="submit"]:disabled {
+  cursor: wait;
+  opacity: .68;
+  transform: none;
+}
