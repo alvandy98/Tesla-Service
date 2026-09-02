@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://procodesolutions.us/sitemap.xml
+Sitemap: https://procodeev.com/sitemap.xml
