@@ -34,7 +34,7 @@ collections:
           - label: "Phone link"
             name: "phoneLink"
             widget: "string"
-            hint: "Example: +13854778598"
+            hint: "Example: +18019003492"
 
           - label: "Email"
             name: "email"

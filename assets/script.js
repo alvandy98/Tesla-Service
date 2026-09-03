@@ -55,12 +55,12 @@ function applySite() {
   });
 
   $$("[data-phone-display]").forEach(element => {
-    element.textContent = site.phoneDisplay || "385-477-8598";
+    element.textContent = site.phoneDisplay || "801-900-3492";
   });
 
   $$("[data-phone-link]").forEach(element => {
     element.href = `tel:${
-      site.phone || site.phoneLink || "3854778598"
+      site.phone || site.phoneLink || "8019003492"
     }`;
   });
 
@@ -396,7 +396,7 @@ function renderVehicle() {
 
             <a
               class="button glass"
-              href="tel:3854778598"
+              href="tel:8019003492"
               data-phone-link
             >
               Call or text
@@ -678,10 +678,10 @@ function renderVehicle() {
 
             <a
               class="button glass"
-              href="tel:3854778598"
+              href="tel:8019003492"
               data-phone-link
             >
-              385-477-8598
+              801-900-3492
             </a>
           </div>
         </div>
@@ -929,8 +929,8 @@ async function init() {
 
     state.site = {
       name: "ProCode Solutions",
-      phoneLink: "3854778598",
-      phoneDisplay: "385-477-8598",
+      phoneLink: "8019003492",
+      phoneDisplay: "801-900-3492",
       city: "Utah County, Utah"
     };
 

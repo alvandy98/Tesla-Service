@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           showFormMessage(
             form,
-            "We could not connect to the form service. Please try again or call or text 385-477-8598."
+            "We could not connect to the form service. Please try again or call or text 801-900-3492."
           );
         } finally {
           setSubmittingState(
